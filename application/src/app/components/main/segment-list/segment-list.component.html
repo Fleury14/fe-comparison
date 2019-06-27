@@ -1,6 +1,15 @@
 <div class="segment-list">
     <h2>Segment list</h2>
     <ul *ngIf="segmentList">
-        <li *ngFor="let segment of segmentList">#{{ segment.id }} - {{ segment.name }}</li>
+        <li *ngFor="let segment of segmentList">
+            <div class="segment-list-row">
+                <span>#{{ segment.id }} - {{ segment.name }}</span>
+                <div class="d-flex">
+                    <span class="fas fa-edit edit-logo"></span>
+                    <span class="fas fa-times delete-logo"></span>
+                </div>
+                
+            </div>
+        </li>
     </ul>
 </div> 

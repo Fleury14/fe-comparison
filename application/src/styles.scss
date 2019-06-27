@@ -8,3 +8,31 @@ html {
     margin: 0;
     padding: 0;
 }
+
+.d-flex {
+    display: flex;
+}
+
+.add-logo {
+    background-color: #080;
+    color: #eee;
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 10px 11.25px;
+}
+
+.edit-logo {
+    background-color: #004;
+    color: #eee;
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 10px 10px;
+}
+
+.delete-logo {
+    background-color: #800;
+    color: #eee;
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 10px 13.1125px;
+}

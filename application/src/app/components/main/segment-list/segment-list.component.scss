@@ -2,6 +2,19 @@
     border: 1px solid #eee;
     border-radius: 13px;
 
+    .segment-list-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 95%;
+        font-size: 20px;
+        margin-bottom: 10px;
+
+        .edit-logo {
+            margin-right: 10px;
+        }
+    }
+
     h2 {
         text-align: center;
     }
