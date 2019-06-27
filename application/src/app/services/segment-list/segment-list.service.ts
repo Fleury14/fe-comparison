@@ -27,4 +27,8 @@ export class SegmentListService {
     initializeList() {
         localStorage.setItem('segment-list', JSON.stringify(initialSegmentList));
     }
+
+    getList(): ISegmentListItem[] {
+        return JSON.parse(localStorage.getItem('segment-list'));
+    }
 }

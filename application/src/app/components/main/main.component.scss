@@ -1,3 +1,30 @@
-h1 {
-    margin: 0;
+.dashboard-container {
+    display: grid;
+    padding: 0px 20px;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100px minmax( calc(100vw - 100px), auto);
+}
+
+.dashboard-title {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    text-align: center;
+}
+
+.segment-list-container {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.segment-list {
+    border: 1px solid #eee;
+    border-radius: 13px;
+
+    h2 {
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+    }
 }

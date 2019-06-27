@@ -1,1 +1,11 @@
-<h1>Main!</h1>
+<div class="dashboard-container">
+    <h1 class="dashboard-title">Main Dashboard</h1>
+    <div class="segment-list-grid-container">
+        <div class="segment-list">
+            <h2>Segment list</h2>
+            <ul *ngIf="segmentList">
+                <li *ngFor="let segment of segmentList">#{{ segment.id }} - {{ segment.name }}</li>
+            </ul>
+        </div> 
+    </div>
+</div>
