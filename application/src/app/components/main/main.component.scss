@@ -2,7 +2,7 @@
     display: grid;
     padding: 0px 20px;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 100px minmax( calc(100vw - 100px), auto);
+    grid-template-rows: 100px minmax( calc(100vw - 100px), auto) auto;
 }
 
 .dashboard-title {
@@ -11,8 +11,21 @@
     text-align: center;
 }
 
-.segment-list-container {
+.segment-list-grid-container {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
+    padding: 10px;
 }
 
+.runner-list-grid-container {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .runner-list-grid-container {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+}
