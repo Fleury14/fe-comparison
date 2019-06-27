@@ -17,7 +17,7 @@ export class RunnerService {
     }
 
     getRunners() {
-        localStorage.getItem('runners');
+        return localStorage.getItem('runners');
     }
 
     initializeRunners() {
@@ -33,6 +33,7 @@ export class RunnerService {
             segments: [],
             totalTime: 0
         }];
+        localStorage.setItem('runners', JSON.stringify(newRunners));
     }
 
     addSegment(id: number, segment: ISegment) {

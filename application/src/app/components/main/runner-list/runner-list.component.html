@@ -1,1 +1,10 @@
-<p>runner list</p>
+<div class="runner-list">
+    <h2>Runner List</h2>
+    <ul *ngIf="currentRunners">
+        <li *ngFor="let runner of currentRunners">
+            <div>
+                <span>{{ runner.name }}</span>
+            </div>
+        </li>
+    </ul>
+</div>

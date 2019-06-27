@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RunnerService } from '../../../services/runners/runners.service';
+import { IRunner } from 'src/app/interfaces/runner.interface';
 
 @Component({
     selector: 'fe-comp-main-runner-list',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class RunnerListComponent implements OnInit {
-    ngOnInit() {
 
+    public currentRunners: IRunner[] = null;
+
+    constructor(private runnerServ: RunnerService) {}
+
+    ngOnInit() {
+        this.runnerServ.initializeRunners();
+        this.currentRunners = JSON.parse(this.runnerServ.getRunners());
     }
 }
