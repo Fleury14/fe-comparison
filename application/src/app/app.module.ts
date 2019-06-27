@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { SegmentListService } from './services/segment-list/segment-list.service';
+
 @NgModule({
   declarations: [
     AppComponent, routingComponents
@@ -12,7 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ SegmentListService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
