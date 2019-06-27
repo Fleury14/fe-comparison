@@ -10,12 +10,12 @@ import { ISegmentListItem } from 'src/app/interfaces/segment-list-item.interface
 
 export class MainComponent implements OnInit {
 
-    public segmentList: ISegmentListItem[] = null;
+    // public segmentList: ISegmentListItem[] = null;
 
-    constructor( private segList: SegmentListService) {}
+    // constructor( private segList: SegmentListService) {}
 
     ngOnInit() {
-        this.segmentList = this.segList.getList();
-        console.log(this.segmentList);
+        // this.segmentList = this.segList.getList();
+        // console.log(this.segmentList);
     }
 }

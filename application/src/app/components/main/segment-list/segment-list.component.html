@@ -1,0 +1,6 @@
+<div class="segment-list">
+    <h2>Segment list</h2>
+    <ul *ngIf="segmentList">
+        <li *ngFor="let segment of segmentList">#{{ segment.id }} - {{ segment.name }}</li>
+    </ul>
+</div> 
