@@ -42,7 +42,7 @@ export class RunnerService {
             return;
         }
         // find the runner with specified id and add segment. if that id doesnt exits, error
-        const target = currentRunners.find(runner => runner.id = id);
+        const target = currentRunners.find(runner => runner.id === id);
         if (!target) {
             console.log('No runner found with that id');
             return;
@@ -65,7 +65,7 @@ export class RunnerService {
             return;
         }
         // find the runner with specified id and add segment. if that id doesnt exits, error
-        const target = currentRunners.find(runner => runner.id = runnerId);
+        const target = currentRunners.find(runner => runner.id === runnerId);
         if (!target) {
             console.log('No runner found with that id');
             return;
