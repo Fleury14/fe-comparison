@@ -8,8 +8,11 @@
                     <span class="fas fa-edit edit-logo"></span>
                     <span class="fas fa-times delete-logo"></span>
                 </div>
-                
             </div>
         </li>
     </ul>
+    <div class="button-center">
+        <button class="button is-success" (click)="toggleForm()">Add segment to list</button>
+    </div>
+    <fe-comp-segment-form *ngIf="showForm"></fe-comp-segment-form>
 </div> 

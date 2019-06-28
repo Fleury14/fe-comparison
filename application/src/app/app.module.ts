@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MainModule } from './components/main/main.module';
+import { CommonComponentModule } from './components/common/common-component.module';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,9 @@ import { RunnerService } from './services/runners/runners.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainModule
+    MainModule,
+    CommonComponentModule,
+    
   ],
   providers: [ SegmentListService, RunnerService ],
   bootstrap: [AppComponent]

@@ -10,11 +10,16 @@ import { ISegmentListItem } from 'src/app/interfaces/segment-list-item.interface
 
 export class SegmentListComponent implements OnInit {
     public segmentList: ISegmentListItem[] = null;
+    public showForm: boolean = false;
 
     constructor( private segList: SegmentListService) {}
 
     ngOnInit() {
         this.segmentList = this.segList.getList();
         console.log(this.segmentList);
+    }
+
+    toggleForm() {
+        this.showForm = !this.showForm;
     }
 }
