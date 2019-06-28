@@ -40,6 +40,7 @@ export class SegmentListService {
 
     clearList() {
         localStorage.removeItem('segment-list');
+        this.segmentListSource.next([]);
     }
 
     initializeList() {
