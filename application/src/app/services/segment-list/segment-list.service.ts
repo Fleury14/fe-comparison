@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { initialSegmentList } from '../../initial-data/initial-segment';
 import { ISegmentListItem } from '../../interfaces/segment-list-item.interface';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +9,8 @@ import { ISegmentListItem } from '../../interfaces/segment-list-item.interface';
 
 export class SegmentListService {
     constructor() {}
+
+    private segmentListSource = new Subject<ISegmentListItem[]>();
 
     addSegment(listItemName: string) {
         const currentList:ISegmentListItem[] = JSON.parse(localStorage.getItem('segment-list'));
@@ -32,6 +35,7 @@ export class SegmentListService {
             const newList: ISegmentListItem[] = [listItem];
             localStorage.setItem('segment-list', JSON.stringify(newList));
         }
+        this.segmentListSource.next(currentList);
     }
 
     clearList() {
@@ -41,8 +45,12 @@ export class SegmentListService {
     initializeList() {
         localStorage.setItem('segment-list', JSON.stringify(initialSegmentList));
     }
+    
+    getList() {
+        this.segmentListSource.next(JSON.parse(localStorage.getItem('segment-list')))
+    }
 
-    getList(): ISegmentListItem[] {
-        return JSON.parse(localStorage.getItem('segment-list'));
+    subscribeToList() {
+        return this.segmentListSource.asObservable(); 
     }
 }

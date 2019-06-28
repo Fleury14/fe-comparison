@@ -15,7 +15,10 @@ export class SegmentListComponent implements OnInit {
     constructor( private segList: SegmentListService) {}
 
     ngOnInit() {
-        this.segmentList = this.segList.getList();
+        this.segList.subscribeToList().subscribe((segList: ISegmentListItem[]) => {
+            this.segmentList = segList;
+        });
+        this.segList.getList();
         console.log(this.segmentList);
     }
 
