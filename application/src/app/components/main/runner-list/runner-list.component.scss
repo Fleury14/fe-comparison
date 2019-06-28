@@ -12,3 +12,20 @@
         text-align: center;
     }
 }
+
+.runner-container {
+
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 10px;
+
+    .runner-top {
+        font-size: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .runner-bottom {
+        display: flex;
+        justify-content: space-between;
+    }
+}

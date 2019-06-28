@@ -3,7 +3,16 @@
     <ul *ngIf="currentRunners">
         <li *ngFor="let runner of currentRunners">
             <div class="runner-container">
-                <span>{{ runner.name }}</span>
+                <div class="runner-top">
+                    <span>{{ runner.name }}</span>
+                    <span>{{ parseTime(runner.totalTime) }}</span>
+                </div>
+                <div class="runner-bottom">
+                    <span>Segments: {{ runner.segments.length }}</span>
+                    <button class="button is-small is-success">Add Segment</button>
+                    <button class="button is-small is-primary">View/Edit Segments</button>
+                    <button class="button is-small is-danger">Add Segment</button>
+                </div>
             </div>
         </li>
     </ul>

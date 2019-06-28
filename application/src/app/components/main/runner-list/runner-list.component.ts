@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RunnerService } from '../../../services/runners/runners.service';
 import { IRunner } from 'src/app/interfaces/runner.interface';
+import { ParseTime } from 'src/app/helpers/parse-time';
 
 @Component({
     selector: 'fe-comp-main-runner-list',
@@ -17,5 +18,9 @@ export class RunnerListComponent implements OnInit {
     ngOnInit() {
         this.runnerServ.initializeRunners();
         this.currentRunners = JSON.parse(this.runnerServ.getRunners());
+    }
+
+    parseTime(totalTime:number):string {
+        return ParseTime(totalTime)
     }
 }
