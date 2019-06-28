@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { SegmentFormComponent } from './segment-form/segment-form.component';
@@ -7,7 +8,7 @@ import { SegmentFormComponent } from './segment-form/segment-form.component';
     declarations: [
         SegmentFormComponent
     ],
-    imports: [ CommonModule ],
+    imports: [ CommonModule, FormsModule ],
     exports: [
         SegmentFormComponent
     ]

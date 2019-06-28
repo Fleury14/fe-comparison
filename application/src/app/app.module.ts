@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MainModule } from './components/main/main.module';
 import { CommonComponentModule } from './components/common/common-component.module';
 
@@ -15,6 +16,7 @@ import { RunnerService } from './services/runners/runners.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     MainModule,
     CommonComponentModule,

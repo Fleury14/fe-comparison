@@ -69,3 +69,8 @@ html {
 label.label {
     color: #fff;
 }
+
+.button.is-warning[disabled] {
+    background-color: #331100;
+    color: #bbb;
+}
