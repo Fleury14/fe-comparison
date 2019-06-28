@@ -12,7 +12,10 @@
         </li>
     </ul>
     <div class="button-center">
-        <button class="button is-success" (click)="toggleForm()">Add segment to list</button>
+        <button class="button is-success" (click)="toggleForm()">{{ showForm ? "Hide Form" : "Add segment to list" }}</button>
     </div>
-    <fe-comp-segment-form *ngIf="showForm"></fe-comp-segment-form>
+    <div *ngIf="showForm" class="segment-list-form-container">
+        <fe-comp-segment-form></fe-comp-segment-form>
+    </div>
+    
 </div> 

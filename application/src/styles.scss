@@ -37,20 +37,35 @@ html {
     padding: 10px 13.1125px;
 }
 
+
+.button-center {
+    display: flex;
+    justify-content: center;
+}
+
 //BULMNA OVERWRITES
 
 .button.is-success {
     background-color: #004400;
+    transition: 0.2s all;
 }
 
 .button.is-warning {
     background-color: #442200;
+    color: #eee;
+    transition: 0.2s all;
 }
 
 .button.is-primary {
     background-color: #000044;
+    transition: 0.2s all;
 }
 
 .button.is-danger {
     background-color: #770000;
+    transition: 0.2s all;
+}
+
+label.label {
+    color: #fff;
 }
