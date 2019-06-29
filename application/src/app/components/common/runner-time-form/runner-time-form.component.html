@@ -1,4 +1,4 @@
-<form #segmentListForm="ngForm" (ngSubmit)="onSubmit(segmentListForm.value)">
+<form #runnerTimeForm="ngForm" (ngSubmit)="onSubmit(runnerTimeForm.value)">
     <div class="time-inputs">
         <div class="field">
             <label class="label">Minutes</label>
@@ -16,8 +16,8 @@
     <div class="segment-input">
         <div class="control">
             <div class="select">
-                <label for="" class="label">Segment</label>
-                <select>
+                <label for="segmentName" class="label">Segment</label>
+                <select name="segmentName" [(ngModel)]="segmentName">
                     <option *ngFor="let segment of segmentList">{{ segment.name }}
                 </select>
             </div>
@@ -25,6 +25,6 @@
     </div>
     
     <div class="button-center">
-        <button class="button is-warning" [disabled]="!segmentName">Add segment to list</button>
+        <button class="button is-warning" [disabled]="">Add segment to list</button>
     </div>
 </form>

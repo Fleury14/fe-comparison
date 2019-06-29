@@ -64,6 +64,9 @@ export class RunnerService {
 
         // save runners to LS
         localStorage.setItem('runners', JSON.stringify(currentRunners));
+
+        // resend data to subscribers
+        this.runnersSource.next(currentRunners);
     }
 
     removeSegment(runnerId: number, segmentId: number) {

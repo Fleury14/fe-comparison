@@ -22,7 +22,10 @@ export class RunnerListComponent implements OnInit {
 
     ngOnInit() {
         this.runnerServ.initializeRunners();
-        this.runnerServ.subscribeToRunners().subscribe(runners => this.currentRunners = runners);
+        this.runnerServ.subscribeToRunners().subscribe(runners => {
+            console.log(runners, 'in sub');
+            this.currentRunners = runners;
+        });
         this.runnerServ.getRunners();
 
     }
