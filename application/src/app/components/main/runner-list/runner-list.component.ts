@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RunnerService } from '../../../services/runners/runners.service';
 import { IRunner } from 'src/app/interfaces/runner.interface';
 import { ParseTime } from 'src/app/helpers/parse-time';
+import { ISegmentListItem } from 'src/app/interfaces/segment-list-item.interface';
+import { SegmentListService } from 'src/app/services/segment-list/segment-list.service';
 
 @Component({
     selector: 'fe-comp-main-runner-list',
@@ -14,6 +16,7 @@ export class RunnerListComponent implements OnInit {
     public currentRunners: IRunner[] = null;
     public showTimeForm: boolean = false;
     public selectedRunner:IRunner = null;
+    public segmentsList:ISegmentListItem[] = null;
 
     constructor(private runnerServ: RunnerService) {}
 
@@ -21,6 +24,7 @@ export class RunnerListComponent implements OnInit {
         this.runnerServ.initializeRunners();
         this.runnerServ.subscribeToRunners().subscribe(runners => this.currentRunners = runners);
         this.runnerServ.getRunners();
+
     }
 
     parseTime(totalTime:number):string {

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SegmentListService } from '../../../services/segment-list/segment-list.service';
 import { IRunner } from 'src/app/interfaces/runner.interface';
+import { ISegmentListItem } from 'src/app/interfaces/segment-list-item.interface';
 
 @Component({
     selector: 'fe-comp-runner-time-form',
@@ -9,7 +10,7 @@ import { IRunner } from 'src/app/interfaces/runner.interface';
 })
 
 export class RunnerTimeFormComponent implements OnInit {
-    public segmentName: string;
+    segmentList: ISegmentListItem[] = [];
 
     @Input() runner: IRunner;
 
@@ -17,10 +18,10 @@ export class RunnerTimeFormComponent implements OnInit {
 
     ngOnInit() {
         console.log('revd', this.runner);
+        this.segListServ.subscribeToList().subscribe(segmentList => this.segmentList = segmentList);
+        this.segListServ.getList();
     }
 
     onSubmit(formResults) {
-        this.segListServ.addSegment(formResults.segmentName);
-        this.segmentName = '';
     }
 }

@@ -1,11 +1,29 @@
 <form #segmentListForm="ngForm" (ngSubmit)="onSubmit(segmentListForm.value)">
-    <div class="field">
-        <label class="label">Segment Name</label>
-        <div class="control">
-            <input class="input" type="text" placeholder="Text input" [(ngModel)]="segmentName" name="segmentName">
+    <div class="time-inputs">
+        <div class="field">
+            <label class="label">Minutes</label>
+            <div class="control">
+                <input class="input" type="number" placeholder="0" [(ngModel)]="minutes" name="minutes">
+            </div>
         </div>
-        <p class="help">Example - "Antlion Cave"</p>
+        <div class="field">
+            <label class="label">Seconds</label>
+            <div class="control">
+                <input class="input" type="number" placeholder="0" [(ngModel)]="seconds" name="seconds">
+            </div>
+        </div>
     </div>
+    <div class="segment-input">
+        <div class="control">
+            <div class="select">
+                <label for="" class="label">Segment</label>
+                <select>
+                    <option *ngFor="let segment of segmentList">{{ segment.name }}
+                </select>
+            </div>
+        </div>
+    </div>
+    
     <div class="button-center">
         <button class="button is-warning" [disabled]="!segmentName">Add segment to list</button>
     </div>
