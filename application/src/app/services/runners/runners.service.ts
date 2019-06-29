@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IRunner } from '../../interfaces/runner.interface';
 import { ISegment } from '../../interfaces/segment.interface';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -11,13 +12,19 @@ export class RunnerService {
     }
 
     private runners: IRunner[] = null;
+    private runnersSource = new Subject<IRunner[]>();
 
     clearRunners() {
         localStorage.removeItem('runners');
     }
 
     getRunners() {
-        return localStorage.getItem('runners');
+        this.runnersSource.next(JSON.parse(localStorage.getItem('runners')));
+        // return localStorage.getItem('runners');
+    }
+
+    subscribeToRunners() {
+        return this.runnersSource.asObservable();
     }
 
     initializeRunners() {

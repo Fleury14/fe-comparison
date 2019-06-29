@@ -1,0 +1,12 @@
+<form #segmentListForm="ngForm" (ngSubmit)="onSubmit(segmentListForm.value)">
+    <div class="field">
+        <label class="label">Segment Name</label>
+        <div class="control">
+            <input class="input" type="text" placeholder="Text input" [(ngModel)]="segmentName" name="segmentName">
+        </div>
+        <p class="help">Example - "Antlion Cave"</p>
+    </div>
+    <div class="button-center">
+        <button class="button is-warning" [disabled]="!segmentName">Add segment to list</button>
+    </div>
+</form>

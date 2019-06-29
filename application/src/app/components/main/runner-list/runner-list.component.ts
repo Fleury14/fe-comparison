@@ -17,7 +17,8 @@ export class RunnerListComponent implements OnInit {
 
     ngOnInit() {
         this.runnerServ.initializeRunners();
-        this.currentRunners = JSON.parse(this.runnerServ.getRunners());
+        this.runnerServ.subscribeToRunners().subscribe(runners => this.currentRunners = runners);
+        this.runnerServ.getRunners();
     }
 
     parseTime(totalTime:number):string {
