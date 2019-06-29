@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private segList: SegmentListService) {}
 
   ngOnInit() {
-    this.segList.clearList();
+    // this.segList.clearList();
     // check for segement list, if it doesn't exist, add default
     const currentList = localStorage.getItem('segment-list');
     if (!currentList) {
