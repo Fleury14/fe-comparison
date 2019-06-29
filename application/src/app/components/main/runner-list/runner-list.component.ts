@@ -12,6 +12,8 @@ import { ParseTime } from 'src/app/helpers/parse-time';
 export class RunnerListComponent implements OnInit {
 
     public currentRunners: IRunner[] = null;
+    public showTimeForm: boolean = false;
+    public selectedRunner:IRunner = null;
 
     constructor(private runnerServ: RunnerService) {}
 
@@ -22,6 +24,15 @@ export class RunnerListComponent implements OnInit {
     }
 
     parseTime(totalTime:number):string {
-        return ParseTime(totalTime)
+        return ParseTime(totalTime);
+    }
+
+    toggleForm(runnerId:number) {
+        console.log('rid', runnerId);
+        if (runnerId || runnerId === 0) {
+            this.selectedRunner = this.currentRunners.find(runner => runner.id === runnerId);
+        }
+        this.showTimeForm = !this.showTimeForm;
+
     }
 }

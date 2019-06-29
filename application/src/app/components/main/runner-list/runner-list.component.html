@@ -9,11 +9,14 @@
                 </div>
                 <div class="runner-bottom">
                     <span>Segments: {{ runner.segments.length }}</span>
-                    <button class="button is-small is-success">Add Segment</button>
+                    <button class="button is-small is-success" (click)="toggleForm(runner.id)">Add Segment</button>
                     <button class="button is-small is-primary">View/Edit Segments</button>
                     <button class="button is-small is-danger">Add Segment</button>
                 </div>
             </div>
         </li>
     </ul>
+    <div *ngIf="showTimeForm">
+        <fe-comp-runner-time-form [runner]="selectedRunner"></fe-comp-runner-time-form>
+    </div>
 </div>
