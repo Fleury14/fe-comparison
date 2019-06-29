@@ -24,6 +24,11 @@ export class SegmentListComponent implements OnInit, OnDestroy {
         console.log(this.segmentList);
     }
 
+    deleteSegment(id:number) {
+        console.log('recvd', id);
+        this.segList.removeSegment(id);
+    }
+
     ngOnDestroy() {
         this.subs.forEach(sub => sub.unsubscribe());
     }

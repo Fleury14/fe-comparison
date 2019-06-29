@@ -6,7 +6,7 @@
                 <span>#{{ segment.id }} - {{ segment.name }}</span>
                 <div class="d-flex">
                     <span class="fas fa-edit edit-logo"></span>
-                    <span class="fas fa-times delete-logo"></span>
+                    <span class="fas fa-times delete-logo" (click)="deleteSegment(segment.id)"></span>
                 </div>
             </div>
         </li>

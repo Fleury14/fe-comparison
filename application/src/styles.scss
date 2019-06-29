@@ -19,6 +19,9 @@ html {
     border-radius: 50%;
     font-size: 20px;
     padding: 10px 11.25px;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .edit-logo {
@@ -27,6 +30,9 @@ html {
     border-radius: 50%;
     font-size: 20px;
     padding: 10px 10px;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .delete-logo {
@@ -35,6 +41,9 @@ html {
     border-radius: 50%;
     font-size: 20px;
     padding: 10px 13.1125px;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 
