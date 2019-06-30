@@ -9,7 +9,7 @@
             </div>
         </div>
         <div *ngIf="showEditForm">
-            <fe-comp-runner-time-form [runner]="runner" [editMode]></fe-comp-runner-time-form>
+            <fe-comp-runner-time-form [runner]="runner" [editMode]="true" [editData]="selectedSegment"></fe-comp-runner-time-form>
         </div>
     </div>
     

@@ -18,12 +18,18 @@ export class RunnerTimeFormComponent implements OnInit {
     public segmentName: string;
     @Input() runner: IRunner;
     @Input() editMode: boolean;
+    @Input() editData: ISegment;
 
     constructor(private segListServ: SegmentListService, private runnerServ: RunnerService) {}
 
     ngOnInit() {
         this.segListServ.subscribeToList().subscribe(segmentList => this.segmentList = segmentList);
         this.segListServ.getList();
+        if(this.editMode && this.editData) {
+            this.minutes = Math.floor(this.editData.time / 60);
+            this.seconds = Math.floor(this.editData.time % 60);
+            this.segmentName = this.editData.name;
+        }
     }
 
     onSubmit(formResults) {
@@ -34,7 +40,14 @@ export class RunnerTimeFormComponent implements OnInit {
             locId: this.segmentList.find(segment => segment.name === formResults.segmentName).id,
             time
         }
-        this.runnerServ.addSegment(this.runner.id, newSegment);
+        if (this.editMode) {
+            newSegment.id = this.editData.id;
+            this.runnerServ.editSegment(this.runner.id, newSegment);
+            
+        } else {
+            this.runnerServ.addSegment(this.runner.id, newSegment);
+        }
+        
         this.minutes = 0;
         this.seconds = 0;
         this.segmentName = '';

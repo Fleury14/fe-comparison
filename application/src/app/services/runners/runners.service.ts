@@ -111,4 +111,32 @@ export class RunnerService {
         // save runners to LS
         localStorage.setItem('runners', JSON.stringify(currentRunners));
     }
+
+    editSegment(runnerId: number, updatedSegment: ISegment) {
+        const currentRunners: IRunner[] = JSON.parse(localStorage.getItem('runners'));
+        if (!currentRunners) {
+            console.log('No runners found');
+            return;
+        }
+        // find the runner with specified id and add segment. if that id doesnt exits, error
+        const target = currentRunners.find(runner => runner.id === runnerId);
+        if (!target) {
+            console.log('No runner found with that id');
+            return;
+        }
+
+        // find target segment to replace adjust time
+        const targetSegment:ISegment = target.segments.find(segment => segment.id === updatedSegment.id);
+        targetSegment.time = updatedSegment.time
+
+        // recalculate total time
+        let totalTime = 0;
+        target.segments.forEach(segment => totalTime += segment.time);
+        target.totalTime = totalTime;
+
+        // save to LS and send data out
+        localStorage.setItem('runners', JSON.stringify(currentRunners));
+        this.runnersSource.next(currentRunners);
+
+    }
 }

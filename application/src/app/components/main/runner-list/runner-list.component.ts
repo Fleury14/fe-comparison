@@ -26,6 +26,8 @@ export class RunnerListComponent implements OnInit {
         this.runnerServ.subscribeToRunners().subscribe(runners => {
             console.log(runners, 'in sub');
             this.currentRunners = runners;
+            this.showTimeForm = false;
+            this.showEditForm = false;
         });
         this.runnerServ.getRunners();
 
