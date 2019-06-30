@@ -5,7 +5,7 @@
             <p>{{parseTime(segment.time)}}</p>
             <div>
                 <button class="button is-primary" (click)="toggleEdit(segment.id)">Edit</button>
-                <button class="button is-danger">Delete</button>
+                <button class="button is-danger" (click)="toggleDelete(segment.id)">Delete</button>
             </div>
         </div>
         <div *ngIf="showEditForm">

@@ -110,6 +110,7 @@ export class RunnerService {
 
         // save runners to LS
         localStorage.setItem('runners', JSON.stringify(currentRunners));
+        this.runnersSource.next(currentRunners);
     }
 
     editSegment(runnerId: number, updatedSegment: ISegment) {
