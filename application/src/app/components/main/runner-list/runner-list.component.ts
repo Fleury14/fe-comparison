@@ -15,6 +15,7 @@ export class RunnerListComponent implements OnInit {
 
     public currentRunners: IRunner[] = null;
     public showTimeForm: boolean = false;
+    public showEditForm: boolean = false;
     public selectedRunner:IRunner = null;
     public segmentsList:ISegmentListItem[] = null;
 
@@ -41,5 +42,12 @@ export class RunnerListComponent implements OnInit {
         }
         this.showTimeForm = !this.showTimeForm;
 
+    }
+
+    toggleEdit(runnerId: number) {
+        if (runnerId || runnerId === 0) {
+            this.selectedRunner = this.currentRunners.find(runner => runner.id === runnerId);
+        }
+        this.showEditForm = !this.showEditForm;
     }
 }

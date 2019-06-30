@@ -31,8 +31,15 @@ export class RunnerService {
         const newRunners: IRunner[] = [{
             id: 0,
             name: 'Fleury14',
-            segments: [],
-            totalTime: 0
+            segments: [
+                {
+                    name: 'Shopping',
+                    locId: 1,
+                    id: 1,
+                    time: 230
+                }
+            ],
+            totalTime: 230
         },
         {
             id: 1,
@@ -55,6 +62,16 @@ export class RunnerService {
             console.log('No runner found with that id');
             return;
         }
+        // find first open ID
+        let newId:number = 0
+        let foundId:boolean = false;
+        while (!foundId) {
+            newId++;
+            if (!target.segments.find(segment => segment.id === newId)) {
+                foundId = true;
+            }
+        }
+        segment.id = newId;
         target.segments.push(segment);
 
         // recalculate total time

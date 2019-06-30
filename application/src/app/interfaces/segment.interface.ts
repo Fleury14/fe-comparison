@@ -1,5 +1,6 @@
 export interface ISegment {
     name: string;
-    id: number;
+    id?: number;
     time: number;
+    locId: number;
 }

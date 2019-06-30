@@ -13,8 +13,11 @@ import { ISegment } from 'src/app/interfaces/segment.interface';
 
 export class RunnerTimeFormComponent implements OnInit {
     segmentList: ISegmentListItem[] = [];
-
+    public minutes: number;
+    public seconds: number;
+    public segmentName: string;
     @Input() runner: IRunner;
+    @Input() editMode: boolean;
 
     constructor(private segListServ: SegmentListService, private runnerServ: RunnerService) {}
 
@@ -28,9 +31,13 @@ export class RunnerTimeFormComponent implements OnInit {
         const time: number = (formResults.minutes * 60) + formResults.seconds;
         const newSegment:ISegment = {
             name: formResults.segmentName,
-            id: this.segmentList.find(segment => segment.name === formResults.segmentName).id,
+            locId: this.segmentList.find(segment => segment.name === formResults.segmentName).id,
             time
         }
         this.runnerServ.addSegment(this.runner.id, newSegment);
+        this.minutes = 0;
+        this.seconds = 0;
+        this.segmentName = '';
+        
     }
 }
