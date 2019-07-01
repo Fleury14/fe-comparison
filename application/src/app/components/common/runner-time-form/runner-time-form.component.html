@@ -1,5 +1,21 @@
 <form #runnerTimeForm="ngForm" (ngSubmit)="onSubmit(runnerTimeForm.value)">
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="inputType" [value]="0" [(ngModel)]="inputType">
+            Input by total time
+        </label>
+        <label class="radio">
+            <input type="radio" name="inputType" checked [value]="1" [(ngModel)]="inputType">
+            Input by individual segment
+        </label>
+        </div>
     <div class="time-inputs">
+        <div class="field">
+            <label class="label">Hours</label>
+            <div class="control">
+                <input class="input" type="number" placeholder="0" [(ngModel)]="hours" name="hours">
+            </div>
+        </div>
         <div class="field">
             <label class="label">Minutes</label>
             <div class="control">
@@ -25,6 +41,6 @@
     </div>
     
     <div class="button-center">
-        <button class="button is-warning" [disabled]="">Add segment to list</button>
+        <button class="button is-warning" [disabled]="!segmentName">Add segment to list</button>
     </div>
 </form>

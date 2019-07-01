@@ -13,9 +13,11 @@ import { ISegment } from 'src/app/interfaces/segment.interface';
 
 export class RunnerTimeFormComponent implements OnInit {
     segmentList: ISegmentListItem[] = [];
-    public minutes: number;
-    public seconds: number;
+    public hours: number = 0;
+    public minutes: number = 0;
+    public seconds: number = 0;
     public segmentName: string;
+    public inputType: number = 0;
     @Input() runner: IRunner;
     @Input() editMode: boolean;
     @Input() editData: ISegment;
@@ -34,7 +36,13 @@ export class RunnerTimeFormComponent implements OnInit {
 
     onSubmit(formResults) {
         console.log('sub', formResults);
-        const time: number = (formResults.minutes * 60) + formResults.seconds;
+        let time: number = 0;
+        if (this.inputType === 1) {
+            time = (formResults.hours * 60 * 60) + (formResults.minutes * 60) + formResults.seconds;
+        } else {
+            time = ((formResults.hours * 60 * 60) + (formResults.minutes * 60) + formResults.seconds) - this.runner.totalTime;
+        }
+        
         const newSegment:ISegment = {
             name: formResults.segmentName,
             locId: this.segmentList.find(segment => segment.name === formResults.segmentName).id,
