@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { SegmentListService } from '../../../services/segment-list/segment-list.service';
 import { IRunner } from 'src/app/interfaces/runner.interface';
 import { ISegmentListItem } from 'src/app/interfaces/segment-list-item.interface';
 import { RunnerService } from 'src/app/services/runners/runners.service';
 import { ISegment } from 'src/app/interfaces/segment.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'fe-comp-runner-time-form',
@@ -11,13 +12,14 @@ import { ISegment } from 'src/app/interfaces/segment.interface';
     styleUrls: [ './runner-time-form.component.scss' ]
 })
 
-export class RunnerTimeFormComponent implements OnInit {
+export class RunnerTimeFormComponent implements OnInit, OnDestroy {
     segmentList: ISegmentListItem[] = [];
     public hours: number = 0;
     public minutes: number = 0;
     public seconds: number = 0;
     public segmentName: string;
     public inputType: number = 0;
+    private sub: Subscription;
     @Input() runner: IRunner;
     @Input() editMode: boolean;
     @Input() editData: ISegment;
@@ -25,13 +27,17 @@ export class RunnerTimeFormComponent implements OnInit {
     constructor(private segListServ: SegmentListService, private runnerServ: RunnerService) {}
 
     ngOnInit() {
-        this.segListServ.subscribeToList().subscribe(segmentList => this.segmentList = segmentList);
+        this.sub = this.segListServ.subscribeToList().subscribe(segmentList => this.segmentList = segmentList);
         this.segListServ.getList();
         if(this.editMode && this.editData) {
             this.minutes = Math.floor(this.editData.time / 60);
             this.seconds = Math.floor(this.editData.time % 60);
             this.segmentName = this.editData.name;
         }
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
     onSubmit(formResults) {
