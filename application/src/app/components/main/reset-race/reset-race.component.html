@@ -1,0 +1,34 @@
+<div class="reset-race-container">
+    <div class="button-center">
+        <button class="button is-warning" (click)="toggleReset()">RESET RACE</button>
+    </div>
+    <div *ngIf="showRacerNum">
+        <form #numForm="ngForm" (ngSubmit)="inputNames(numForm.value.numberOfRacers)">
+            <div class="field">
+                <label class="label">Number of Racers</label>
+                <div class="control">
+                    <input class="input" type="number" [(ngModel)]="numberOfRacers" name="numberOfRacers">
+                </div>
+            </div>
+            <div class="button-center">
+                <button class="button is-small is-primary">Input Names</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="showRacerEntry">
+        <form #entryForm="ngForm" (ngSubmit)="resetRace(entryForm.value)">
+            <div class="field" *ngFor="let racer of placeholderArray; index as i; trackBy: trackByFn">
+                <label class="label">Racer #{{ i + 1}}</label>
+                <div class="control">
+                    <input class="input" type="text" [(ngModel)]="placeholderArray[i]" [name]="'racer-' + (i + 1)">
+                </div>
+            </div>
+            <div class="button-center">
+                <button class="button is-danger">
+                    RESET RACE
+                </button>
+            </div>
+        </form>
+        
+    </div>
+</div>

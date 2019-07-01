@@ -51,12 +51,8 @@ export class RunnerService {
     }
 
     setNewRace(runners: IRunner[]) {
-        const newRunners: IRunner[] = [];
-        runners.forEach((runner, index) => {
-            runner.id = index;
-        });
-        localStorage.setItem('runners', JSON.stringify(newRunners));
-        this.runnersSource.next(newRunners);
+        localStorage.setItem('runners', JSON.stringify(runners));
+        this.runnersSource.next(runners);
     }
 
     addSegment(id: number, segment: ISegment) {
