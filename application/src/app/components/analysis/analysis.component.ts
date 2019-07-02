@@ -42,7 +42,10 @@ export class AnalysisComponent implements OnInit, OnDestroy {
     }
 
     findRunnerTimeForSegment(runnerId: number, segId:number) {
-        return this.runners.find(runner => runner.id === runnerId).segments.find(segment => segment.locId === segId).time;
+        if (this.runners.find(runner => runner.id === runnerId).segments.find(segment => segment.locId === segId)) {
+            return this.runners.find(runner => runner.id === runnerId).segments.find(segment => segment.locId === segId).time;
+        }
+        return '';
     }
 
     ngOnDestroy() {
