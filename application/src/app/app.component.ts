@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // this.segList.clearList();
     // check for segement list, if it doesn't exist, add default
-    const currentList = localStorage.getItem('segment-list');
-    if (!currentList) {
+    const currentList = JSON.parse(localStorage.getItem('segment-list'));
+    if (!currentList || currentList.length < 1) {
       this.segList.initializeList();
     }
   }

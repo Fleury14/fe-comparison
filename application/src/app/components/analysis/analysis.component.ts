@@ -45,7 +45,7 @@ export class AnalysisComponent implements OnInit, OnDestroy {
         if (this.runners.find(runner => runner.id === runnerId).segments.find(segment => segment.locId === segId)) {
             return this.runners.find(runner => runner.id === runnerId).segments.find(segment => segment.locId === segId).time;
         }
-        return '';
+        return null;
     }
 
     ngOnDestroy() {
