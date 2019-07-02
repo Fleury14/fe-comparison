@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { RunnerService } from 'src/app/services/runners/runners.service';
 import { IRunner } from 'src/app/interfaces/runner.interface';
 import { IRunnerAnalysis } from 'src/app/interfaces/runner-analysis.interface';
+import { ParseSegmentType } from 'src/app/helpers/parse-segment-type';
 
 @Component({
     selector: 'fe-comp-analysis',
@@ -21,6 +22,8 @@ export class AnalysisComponent implements OnInit, OnDestroy {
         this.subs.push(this.runnerServ.subscribeToRunners().subscribe(runners => this.runners = runners));
         this.runnerServ.getRunners();
         console.log(this.runners);
+        // parse runners to get common/uncommonn segments
+        ParseSegmentType(this.runners);
         // iterate through each runner
         this.runners.forEach((runner) => {
             const newAnalysis:IRunnerAnalysis = {
