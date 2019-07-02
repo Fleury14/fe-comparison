@@ -97,3 +97,11 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
     background-color: #700;
     color: #eee;
 }
+
+@media screen and (max-width: 1023px) {
+    .navbar-menu {
+        background-color: #400;
+        box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
+        padding: 0.5rem 0;
+    }
+}
