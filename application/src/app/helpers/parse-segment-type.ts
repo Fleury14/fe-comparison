@@ -20,14 +20,25 @@ export const ParseSegmentType = (runners: IRunner[]) => {
         }
     });
 
-    // now check each unique value and see if it occurs multiple times
+    // now check each unique value and see if it occurs for every runner
     // making it either common or uncommon
     uniqueVal.forEach(val => {
-        if(allSegments.indexOf(val) === allSegments.lastIndexOf(val)) {
+        let count = 1;
+        allSegments.forEach(segId => {
+            if (segId === val) {
+                count++;
+            }
+        });
+        if (count === runners.length) {
             segmentTypes.uncommon.push(val);
         } else {
             segmentTypes.common.push(val);
         }
+        // if(allSegments.indexOf(val) === allSegments.lastIndexOf(val)) {
+        //     segmentTypes.uncommon.push(val);
+        // } else {
+        //     segmentTypes.common.push(val);
+        // }
     });
     return segmentTypes;
 }
