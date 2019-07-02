@@ -4,6 +4,10 @@ import { RunnerService } from 'src/app/services/runners/runners.service';
 import { IRunner } from 'src/app/interfaces/runner.interface';
 import { IRunnerAnalysis } from 'src/app/interfaces/runner-analysis.interface';
 import { ParseSegmentType } from 'src/app/helpers/parse-segment-type';
+import { ISegmentTypes } from 'src/app/interfaces/segment-type.interface';
+import { SegmentListService } from 'src/app/services/segment-list/segment-list.service';
+import { ISegmentListItem } from 'src/app/interfaces/segment-list-item.interface';
+import { ParseTime } from 'src/app/helpers/parse-time';
 
 @Component({
     selector: 'fe-comp-analysis',
@@ -15,51 +19,55 @@ export class AnalysisComponent implements OnInit, OnDestroy {
     public subs: Subscription[] = [];
     public runners: IRunner[];
     public runnerData: IRunnerAnalysis[] = [];
+    public segmentList: ISegmentListItem[];
+    public segmentTypes: ISegmentTypes;
+    public bestTimes: number[] = [];
 
-    constructor(private runnerServ: RunnerService) {}
+    constructor(private runnerServ: RunnerService, private segServ: SegmentListService) {}
 
     ngOnInit() {
         this.subs.push(this.runnerServ.subscribeToRunners().subscribe(runners => this.runners = runners));
+        this.subs.push(this.segServ.subscribeToList().subscribe(seglist => this.segmentList = seglist));
         this.runnerServ.getRunners();
+        this.segServ.getList();
+        this.getBestTimes();
         console.log(this.runners);
         // parse runners to get common/uncommonn segments
-        ParseSegmentType(this.runners);
-        // iterate through each runner
-        this.runners.forEach((runner) => {
-            const newAnalysis:IRunnerAnalysis = {
-                id: runner.id,
-                common: [],
-                uncommon: []
-            };
-            // loop through each segment to categorize
-            runner.segments.forEach(segment => {
-                // has another runner done this segment
-                let isCommon: boolean = false;
-                // go through each runner again
-                this.runners.forEach(opponent => {
-                    // ignore if comparing against self
-                    if (opponent.id !== runner.id) {
-                        // if any opposing runner has done the same segment then its common
-                        // TODO: Require ALL opponents to do it?
-                        if (opponent.segments.find(oppSeg => oppSeg.locId === segment.locId)) {
-                            isCommon = true;
-                        }
-                    }
-                });
-                // assign segment to correct category
-                if (isCommon) {
-                    newAnalysis.common.push(segment);
-                } else {
-                    newAnalysis.uncommon.push(segment);
-                }
-            });
-            this.runnerData.push(newAnalysis);
-        })
-        console.log('runner data', this.runnerData);
+        this.segmentTypes = ParseSegmentType(this.runners);
+        
+    }
 
+    findSegTitle(segId: number):string {
+        return this.segmentList.find(segment => segment.id === segId).name;
+    }
+
+    findRunnerTimeForSegment(runnerId: number, segId:number) {
+        return this.runners.find(runner => runner.id === runnerId).segments.find(segment => segment.locId === segId).time;
     }
 
     ngOnDestroy() {
         this.subs.forEach(sub => sub.unsubscribe());
+    }
+
+    parseTime(sec: number) {
+        return sec === 0 ? 'BEST' : ParseTime(sec);
+    }
+    
+    getBestTimes() {
+        // iterate through each runner
+        this.runners.forEach((runner) => {
+            // loop through each segment 
+            runner.segments.forEach(segment => {
+                // has another runner done this segment and beat it?
+                if (this.bestTimes[segment.locId] && segment.time < this.bestTimes[segment.locId]) {
+                    // if so, it's the new best time
+                    this.bestTimes[segment.locId] = segment.time;
+                } else if (!this.bestTimes[segment.locId]) {
+                    //also add the time if a previous one doesnt exist
+                    this.bestTimes[segment.locId] = segment.time;
+                }
+            });
+        });
+        console.log('best times', this.bestTimes)
     }
 }

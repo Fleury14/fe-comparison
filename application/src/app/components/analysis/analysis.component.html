@@ -1,1 +1,23 @@
-<h1>Analysis</h1>
+<div class="analysis-container">
+    <div class="container">
+        <div class="tile is-ancestor">
+            <div class="tile is-3 is-vertical">
+                <h2>Common Segments</h2>
+                <p *ngFor="let segment of segmentTypes.common">{{ findSegTitle(segment) }}</p>
+            </div>
+            <div class="tile is-3 is-vertical" *ngFor="let runner of runners">
+                <h2>{{ runner.name }}</h2>
+                <p 
+                    *ngFor="let segment of segmentTypes.common"
+                    [ngClass]="{
+                        'analysis-best': findRunnerTimeForSegment(runner.id, segment) - bestTimes[segment] === 0,
+                        'analysis-behind': findRunnerTimeForSegment(runner.id, segment) - bestTimes[segment] > 0
+                    }"
+                >
+                    {{ parseTime(findRunnerTimeForSegment(runner.id, segment)) }} ({{ findRunnerTimeForSegment(runner.id, segment) - bestTimes[segment] > 0 ? "+" : "" }}{{ parseTime(findRunnerTimeForSegment(runner.id, segment) - bestTimes[segment]) }})
+                </p>
+            </div>
+        </div>
+    </div>
+    
+</div>
