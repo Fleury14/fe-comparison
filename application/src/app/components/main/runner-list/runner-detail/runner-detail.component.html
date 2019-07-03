@@ -1,11 +1,15 @@
 <div class="runner-detail-container">
-    <div *ngIf="runner">
-        <div class="detail-segment-container" *ngFor="let segment of runner.segments">
-            <p>{{segment.name}}</p>
-            <p>{{parseTime(segment.time)}}</p>
-            <div>
-                <button class="button is-primary" (click)="toggleEdit(segment.id)">Edit</button>
-                <button class="button is-danger" (click)="toggleDelete(segment.id)">Delete</button>
+    <div *ngIf="runner container">
+        <div class="detail-segment-container tile is-ancestor" *ngFor="let segment of runner.segments">
+            <div class="tile is-4">
+                <p>{{segment.name}}</p>
+            </div>
+            <div class="tile is-4 detail-mid">
+                <p>{{parseTime(segment.time)}}</p>
+            </div>
+            <div class="tile is-4 detail-end">
+                <button class="button is-primary is-small" (click)="toggleEdit(segment.id)">Edit</button>
+                <button class="button is-danger is-small" (click)="toggleDelete(segment.id)">Delete</button>
             </div>
         </div>
         <div *ngIf="showEditForm">

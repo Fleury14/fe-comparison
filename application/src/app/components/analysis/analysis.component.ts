@@ -8,6 +8,7 @@ import { ISegmentTypes } from 'src/app/interfaces/segment-type.interface';
 import { SegmentListService } from 'src/app/services/segment-list/segment-list.service';
 import { ISegmentListItem } from 'src/app/interfaces/segment-list-item.interface';
 import { ParseTime } from 'src/app/helpers/parse-time';
+import { SegmentFormComponent } from '../common/segment-form/segment-form.component';
 
 @Component({
     selector: 'fe-comp-analysis',
@@ -43,7 +44,14 @@ export class AnalysisComponent implements OnInit, OnDestroy {
 
     findRunnerTimeForSegment(runnerId: number, segId:number) {
         if (this.runners.find(runner => runner.id === runnerId).segments.find(segment => segment.locId === segId)) {
-            return this.runners.find(runner => runner.id === runnerId).segments.find(segment => segment.locId === segId).time;
+            let timeSum: number = 0;
+            const targetRunner: IRunner = this.runners.find(runner => runner.id === runnerId);
+            targetRunner.segments.forEach(segment => {
+                if (segment.locId === segId) {
+                    timeSum += segment.time;
+                }
+            })
+            return timeSum;
         }
         return null;
     }
@@ -62,15 +70,14 @@ export class AnalysisComponent implements OnInit, OnDestroy {
             // loop through each segment 
             runner.segments.forEach(segment => {
                 // has another runner done this segment and beat it?
-                if (this.bestTimes[segment.locId] && segment.time < this.bestTimes[segment.locId]) {
+                if (this.bestTimes[segment.locId] && this.findRunnerTimeForSegment(runner.id, segment.locId) < this.bestTimes[segment.locId]) {
                     // if so, it's the new best time
-                    this.bestTimes[segment.locId] = segment.time;
+                    this.bestTimes[segment.locId] = this.findRunnerTimeForSegment(runner.id, segment.locId);
                 } else if (!this.bestTimes[segment.locId]) {
                     //also add the time if a previous one doesnt exist
-                    this.bestTimes[segment.locId] = segment.time;
+                    this.bestTimes[segment.locId] = this.findRunnerTimeForSegment(runner.id, segment.locId);
                 }
             });
         });
-        console.log('best times', this.bestTimes)
     }
 }

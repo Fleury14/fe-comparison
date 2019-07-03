@@ -1,5 +1,19 @@
 .detail-segment-container {
-    padding: 20px;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
+
+    &:first-child {
+        margin-top: 20px;
+    }
+
+    .detail-mid {
+        display: flex;
+        justify-content: center;
+    }
+
+    .detail-end {
+        display: flex;
+        justify-content: flex-end;
+    }
 }
