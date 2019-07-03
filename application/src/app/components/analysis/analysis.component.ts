@@ -70,15 +70,14 @@ export class AnalysisComponent implements OnInit, OnDestroy {
             // loop through each segment 
             runner.segments.forEach(segment => {
                 // has another runner done this segment and beat it?
-                if (this.bestTimes[segment.locId] && segment.time < this.bestTimes[segment.locId]) {
+                if (this.bestTimes[segment.locId] && this.findRunnerTimeForSegment(runner.id, segment.locId) < this.bestTimes[segment.locId]) {
                     // if so, it's the new best time
-                    this.bestTimes[segment.locId] = segment.time;
+                    this.bestTimes[segment.locId] = this.findRunnerTimeForSegment(runner.id, segment.locId);
                 } else if (!this.bestTimes[segment.locId]) {
                     //also add the time if a previous one doesnt exist
-                    this.bestTimes[segment.locId] = segment.time;
+                    this.bestTimes[segment.locId] = this.findRunnerTimeForSegment(runner.id, segment.locId);
                 }
             });
         });
-        console.log('best times', this.bestTimes)
     }
 }

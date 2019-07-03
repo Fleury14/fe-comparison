@@ -4,7 +4,7 @@ export const ParseTime = (totalSecs: number) :string => {
     let hrs: number = 0;
 
     secs = totalSecs % 60;
-    mins = Math.floor(totalSecs / 60);
+    mins = Math.floor(totalSecs / 60) % 60;
     hrs = Math.floor(totalSecs / 60 / 60);
 
     const secString:string = secs < 10 ? `0${secs}` : secs.toString();
