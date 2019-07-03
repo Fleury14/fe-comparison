@@ -25,8 +25,8 @@
                 <p *ngFor="let segment of segmentTypes.uncommon">{{ findSegTitle(segment) }}</p>
             </div>
             <div class="tile is-3 is-vertical" *ngFor="let runner of runners">
+                <h2>{{ runner.name }}</h2>
                 <div *ngFor="let segment of segmentTypes.uncommon">
-                    <h2>{{ runner.name }}</h2>
                     <p>{{ findRunnerTimeForSegment(runner.id, segment) ? parseTime(findRunnerTimeForSegment(runner.id, segment)) : 'N/A' }}</p>
                 </div>
             </div>
