@@ -13,6 +13,7 @@ export class SegmentListComponent implements OnInit, OnDestroy {
     public segmentList: ISegmentListItem[] = null;
     public showForm: boolean = false;
     private subs:Subscription[] = [];
+    public editData: ISegmentListItem = null;
 
     constructor( private segList: SegmentListService) {}
 
@@ -27,6 +28,11 @@ export class SegmentListComponent implements OnInit, OnDestroy {
     deleteSegment(id:number) {
         console.log('recvd', id);
         this.segList.removeSegment(id);
+    }
+
+    editSegment(listItem: ISegmentListItem) {
+        this.editData = listItem;
+        this.showForm = true;
     }
 
     ngOnDestroy() {

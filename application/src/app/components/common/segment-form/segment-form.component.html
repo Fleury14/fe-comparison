@@ -7,6 +7,6 @@
         <p class="help">Example - "Antlion Cave"</p>
     </div>
     <div class="button-center">
-        <button class="button is-warning" [disabled]="!segmentName">Add segment to list</button>
+        <button class="button is-warning" [disabled]="!segmentName">{{ editMode ? "Edit Segment" : "Add segment to list" }}</button>
     </div>
 </form>
