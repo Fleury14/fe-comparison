@@ -38,6 +38,14 @@ export class SegmentListService {
         this.segmentListSource.next(currentList);
     }
 
+    editSegment(listItem: ISegmentListItem) {
+        const currentList:ISegmentListItem[] = JSON.parse(localStorage.getItem('segment-list'));
+        const targetItem = currentList.find(segment => segment.id === listItem.id);
+        targetItem.name = listItem.name;
+        localStorage.setItem('segment-list', JSON.stringify(currentList));
+        this.segmentListSource.next(currentList);
+    }
+
     removeSegment(id: number) {
         const currentList:ISegmentListItem[] = JSON.parse(localStorage.getItem('segment-list'));
         const target = currentList.find((segment: ISegmentListItem) => segment.id === id);
