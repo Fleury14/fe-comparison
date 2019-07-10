@@ -19,7 +19,13 @@
         <button class="button is-success" (click)="toggleForm()">{{ showForm ? "Hide Form" : "Add segment to list" }}</button>
     </div>
     <div *ngIf="showForm" class="segment-list-form-container">
-        <fe-comp-segment-form [editMode]="editData ? true : false" [editData]="editData"></fe-comp-segment-form>
+        <fe-comp-segment-form [editMode]="editData ? true : false" [editData]="editData">
+        </fe-comp-segment-form>
     </div>
-    
+    <button class="button is-danger" (click)="resetSegment.showModal()">RESET SEGMENTS TO DEFAULT</button>
+    <fe-comp-modal #resetSegment [title]="'Reset Segment List'">
+        <div modal-content class="modal-content">
+            <p>This will reset the segment list to the default data. Are you sure?</p>
+        </div>
+    </fe-comp-modal>
 </div> 
