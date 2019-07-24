@@ -39,6 +39,11 @@ export class SegmentListComponent implements OnInit, OnDestroy {
         this.subs.forEach(sub => sub.unsubscribe());
     }
 
+    resetList() {
+        console.log('confirmed');
+        this.segList.initializeList();
+    }
+
     toggleForm() {
         this.showForm = !this.showForm;
     }

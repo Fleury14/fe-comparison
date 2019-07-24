@@ -22,8 +22,10 @@
         <fe-comp-segment-form [editMode]="editData ? true : false" [editData]="editData">
         </fe-comp-segment-form>
     </div>
-    <button class="button is-danger" (click)="resetSegment.showModal()">RESET SEGMENTS TO DEFAULT</button>
-    <fe-comp-modal #resetSegment [title]="'Reset Segment List'">
+    <div class="button-center segment-list-form-container">
+        <button class="button is-danger" (click)="resetSegment.showModal()">RESET SEGMENTS TO DEFAULT</button>
+    </div>
+    <fe-comp-modal #resetSegment [title]="'Reset Segment List'" (confirmed)="resetList()">
         <div modal-content class="modal-content">
             <p>This will reset the segment list to the default data. Are you sure?</p>
         </div>
