@@ -4,14 +4,15 @@ import { CommonModule } from '@angular/common';
 
 import { SegmentFormComponent } from './segment-form/segment-form.component';
 import { RunnerTimeFormComponent } from './runner-time-form/runner-time-form.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
     declarations: [
-        SegmentFormComponent, RunnerTimeFormComponent
+        SegmentFormComponent, RunnerTimeFormComponent, ModalComponent
     ],
     imports: [ CommonModule, FormsModule ],
     exports: [
-        SegmentFormComponent, RunnerTimeFormComponent
+        SegmentFormComponent, RunnerTimeFormComponent, ModalComponent
     ]
 })
 
